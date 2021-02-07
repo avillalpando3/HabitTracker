@@ -4,7 +4,7 @@ using System;
 
 namespace HabitTracker.Models
 {
-    public class DBEntity
+    public class Controller
     {
         protected static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
         {

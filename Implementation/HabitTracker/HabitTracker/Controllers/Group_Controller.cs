@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.Models
 {
-    public class Group: DBEntity
+    public class Group_Controller: Controller
     {
         public int ID { get; set; }
         public int Group_ID { get; set; }
@@ -15,7 +15,7 @@ namespace HabitTracker.Models
         public int SortPrecedence { get; set; }
         public string Color { get; set; }
 
-        public Group()
+        public Group_Controller()
         {
             InitializeAsync().SafeFireAndForget(false);
         }
@@ -24,25 +24,25 @@ namespace HabitTracker.Models
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Group).Name))
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Group_Controller).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Group)).ConfigureAwait(false);
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Group_Controller)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
         }
 
-        public Task<List<Group>> GetGroupsAsync()
+        public Task<List<Group_Controller>> GetGroupsAsync()
         {
-            return Database.Table<Group>().ToListAsync();
+            return Database.Table<Group_Controller>().ToListAsync();
         }
 
-        public Task<Group> GetGroupAsync(int id)
+        public Task<Group_Controller> GetGroupAsync(int id)
         {
-            return Database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return Database.Table<Group_Controller>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveGroupAsync(Group group)
+        public Task<int> SaveGroupAsync(Group_Controller group)
         {
             if (group.ID != 0)
             {
@@ -54,7 +54,7 @@ namespace HabitTracker.Models
             }
         }
 
-        public Task<int> DeleteGroupAsync(Group group)
+        public Task<int> DeleteGroupAsync(Group_Controller group)
         {
             return Database.DeleteAsync(group);
         }

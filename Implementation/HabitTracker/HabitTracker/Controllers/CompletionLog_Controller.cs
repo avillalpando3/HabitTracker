@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CompletionLogTracker.Models
 {
-    public class CompletionLog : DBEntity
+    public class CompletionLog_Controller : DBEntity
     {
         public int ID { get; set; }
         public int Habit_ID { get; set; }
         public int Tracked_Day { get; set; }
         public DateTime DateTime_Completed { get; set; }
 
-        public CompletionLog()
+        public CompletionLog_Controller()
         {
             InitializeAsync().Start();
         }
@@ -23,25 +23,25 @@ namespace CompletionLogTracker.Models
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(CompletionLog).Name))
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(CompletionLog_Controller).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(CompletionLog)).ConfigureAwait(false);
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(CompletionLog_Controller)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
         }
 
-        public Task<List<CompletionLog>> GetCompletionLogsAsync()
+        public Task<List<CompletionLog_Controller>> GetCompletionLogsAsync()
         {
-            return Database.Table<CompletionLog>().ToListAsync();
+            return Database.Table<CompletionLog_Controller>().ToListAsync();
         }
 
-        public Task<CompletionLog> GetCompletionLogAsync(int id)
+        public Task<CompletionLog_Controller> GetCompletionLogAsync(int id)
         {
-            return Database.Table<CompletionLog>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return Database.Table<CompletionLog_Controller>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveCompletionLogAsync(CompletionLog completionLog)
+        public Task<int> SaveCompletionLogAsync(CompletionLog_Controller completionLog)
         {
             if (completionLog.ID != 0)
             {
@@ -53,7 +53,7 @@ namespace CompletionLogTracker.Models
             }
         }
 
-        public Task<int> DeleteCompletionLogAsync(CompletionLog completionLog)
+        public Task<int> DeleteCompletionLogAsync(CompletionLog_Controller completionLog)
         {
             return Database.DeleteAsync(completionLog);
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.Models
 {
-    public class Habit : DBEntity
+    public class Habit_Controller : Controller
     {
         public int ID { get; set; }
         public int Group_ID { get; set; }
@@ -18,7 +18,7 @@ namespace HabitTracker.Models
         public int Reccurence_Period { get; set; }
         public DateTime Time_Alarm { get; set; }
 
-        public Habit()
+        public Habit_Controller()
         {
             InitializeAsync().Start();
         }
@@ -27,25 +27,25 @@ namespace HabitTracker.Models
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit).Name))
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit_Controller).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Habit)).ConfigureAwait(false);
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Habit_Controller)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
         }
 
-        public Task<List<Habit>> GetHabitsAsync()
+        public Task<List<Habit_Controller>> GetHabitsAsync()
         {
-            return Database.Table<Habit>().ToListAsync();
+            return Database.Table<Habit_Controller>().ToListAsync();
         }
 
-        public Task<Habit> GetHabitAsync(int id)
+        public Task<Habit_Controller> GetHabitAsync(int id)
         {
-            return Database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return Database.Table<Habit_Controller>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveHabitAsync(Habit habit)
+        public Task<int> SaveHabitAsync(Habit_Controller habit)
         {
             if (habit.ID != 0)
             {
@@ -57,7 +57,7 @@ namespace HabitTracker.Models
             }
         }
 
-        public Task<int> DeleteHabitAsync(Habit habit)
+        public Task<int> DeleteHabitAsync(Habit_Controller habit)
         {
             return Database.DeleteAsync(habit);
         }
