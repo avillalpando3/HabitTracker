@@ -2,7 +2,7 @@
 using SQLite;
 using System;
 
-namespace HabitTracker.Models
+namespace HabitTracker.Controllers
 {
     public class Controller
     {
