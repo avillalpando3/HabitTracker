@@ -1,12 +1,13 @@
-﻿using SQLite;
-using System;
+﻿using HabitTracker.Common;
+using HabitTracker.Database;
+using SQLite;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HabitTracker.Models
 {
-    public class Group
+    public class Group: DBEntity
     {
         public int ID { get; set; }
         public int Group_ID { get; set; }
@@ -14,17 +15,9 @@ namespace HabitTracker.Models
         public int SortPrecedence { get; set; }
         public string Color { get; set; }
 
-        static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
-        {
-            return new SQLiteAsyncConnection(DatabaseConstants.DatabasePath, DatabaseConstants.Flags);
-        });
-
-        static SQLiteAsyncConnection Database => lazyInitializer.Value;
-        static bool initialized = false;
-
         public Group()
         {
-            InitializeAsync().Start();
+            InitializeAsync().SafeFireAndForget(false);
         }
 
         async Task InitializeAsync()
@@ -39,37 +32,37 @@ namespace HabitTracker.Models
             }
         }
 
-        public Task<List<Group>> GetItemsAsync()
+        public Task<List<Group>> GetGroupsAsync()
         {
             return Database.Table<Group>().ToListAsync();
         }
 
-        public Task<List<Group>> GetItemsNotDoneAsync()
-        {
-            // SQL queries are also possible
-            return Database.QueryAsync<Group>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        }
+        //public Task<List<Group>> GetItemsNotDoneAsync()
+        //{
+        //    // SQL queries are also possible
+        //    return Database.QueryAsync<Group>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+        //}
 
-        public Task<Group> GetItemAsync(int id)
+        public Task<Group> GetGroupAsync(int id)
         {
             return Database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(Group item)
+        public Task<int> SaveGroupAsync(Group group)
         {
-            if (item.ID != 0)
+            if (group.ID != 0)
             {
-                return Database.UpdateAsync(item);
+                return Database.UpdateAsync(group);
             }
             else
             {
-                return Database.InsertAsync(item);
+                return Database.InsertAsync(group);
             }
         }
 
-        public Task<int> DeleteItemAsync(Group item)
+        public Task<int> DeleteGroupAsync(Group group)
         {
-            return Database.DeleteAsync(item);
+            return Database.DeleteAsync(group);
         }
     }
 }

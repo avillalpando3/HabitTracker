@@ -1,4 +1,4 @@
-﻿using HabitTracker.Models;
+﻿using HabitTracker.Database;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -7,20 +7,12 @@ using System.Threading.Tasks;
 
 namespace CompletionLogTracker.Models
 {
-    public class CompletionLog
+    public class CompletionLog : DBEntity
     {
         public int ID { get; set; }
         public int Habit_ID { get; set; }
         public int Tracked_Day { get; set; }
         public DateTime DateTime_Completed { get; set; }
-
-        static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
-        {
-            return new SQLiteAsyncConnection(DatabaseConstants.DatabasePath, DatabaseConstants.Flags);
-        });
-
-        static SQLiteAsyncConnection Database => lazyInitializer.Value;
-        static bool initialized = false;
 
         public CompletionLog()
         {
@@ -39,37 +31,37 @@ namespace CompletionLogTracker.Models
             }
         }
 
-        public Task<List<CompletionLog>> GetItemsAsync()
+        public Task<List<CompletionLog>> GetCompletionLogsAsync()
         {
             return Database.Table<CompletionLog>().ToListAsync();
         }
 
-        public Task<List<CompletionLog>> GetItemsNotDoneAsync()
-        {
-            // SQL queries are also possible
-            return Database.QueryAsync<CompletionLog>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        }
+        //public Task<List<CompletionLog>> GetItemsNotDoneAsync()
+        //{
+        //    // SQL queries are also possible
+        //    return Database.QueryAsync<CompletionLog>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+        //}
 
-        public Task<CompletionLog> GetItemAsync(int id)
+        public Task<CompletionLog> GetCompletionLogAsync(int id)
         {
             return Database.Table<CompletionLog>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(CompletionLog item)
+        public Task<int> SaveCompletionLogAsync(CompletionLog completionLog)
         {
-            if (item.ID != 0)
+            if (completionLog.ID != 0)
             {
-                return Database.UpdateAsync(item);
+                return Database.UpdateAsync(completionLog);
             }
             else
             {
-                return Database.InsertAsync(item);
+                return Database.InsertAsync(completionLog);
             }
         }
 
-        public Task<int> DeleteItemAsync(CompletionLog item)
+        public Task<int> DeleteCompletionLogAsync(CompletionLog completionLog)
         {
-            return Database.DeleteAsync(item);
+            return Database.DeleteAsync(completionLog);
         }
     }
 }

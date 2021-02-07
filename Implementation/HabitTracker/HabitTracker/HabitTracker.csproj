@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Database\HabitTracker.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

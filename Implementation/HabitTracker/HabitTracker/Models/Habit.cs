@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using HabitTracker.Database;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.Models
 {
-    public class Habit
+    public class Habit : DBEntity
     {
         public int ID { get; set; }
         public int Group_ID { get; set; }
@@ -16,14 +17,6 @@ namespace HabitTracker.Models
         public int Recurrence_Frequency { get; set; }
         public int Reccurence_Period { get; set; }
         public DateTime Time_Alarm { get; set; }
-
-        static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
-        {
-            return new SQLiteAsyncConnection(DatabaseConstants.DatabasePath, DatabaseConstants.Flags);
-        });
-
-        static SQLiteAsyncConnection Database => lazyInitializer.Value;
-        static bool initialized = false;
 
         public Habit()
         {
@@ -42,37 +35,37 @@ namespace HabitTracker.Models
             }
         }
 
-        public Task<List<Habit>> GetItemsAsync()
+        public Task<List<Habit>> GetHabitsAsync()
         {
             return Database.Table<Habit>().ToListAsync();
         }
 
-        public Task<List<Habit>> GetItemsNotDoneAsync()
-        {
-            // SQL queries are also possible
-            return Database.QueryAsync<Habit>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        }
+        //public Task<List<Habit>> GetHabitsNotDoneAsync()
+        //{
+        //    // SQL queries are also possible
+        //    return Database.QueryAsync<Habit>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+        //}
 
-        public Task<Habit> GetItemAsync(int id)
+        public Task<Habit> GetHabitAsync(int id)
         {
             return Database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(Habit item)
+        public Task<int> SaveHabitAsync(Habit habit)
         {
-            if (item.ID != 0)
+            if (habit.ID != 0)
             {
-                return Database.UpdateAsync(item);
+                return Database.UpdateAsync(habit);
             }
             else
             {
-                return Database.InsertAsync(item);
+                return Database.InsertAsync(habit);
             }
         }
 
-        public Task<int> DeleteItemAsync(Habit item)
+        public Task<int> DeleteHabitAsync(Habit habit)
         {
-            return Database.DeleteAsync(item);
+            return Database.DeleteAsync(habit);
         }
     }
 }

@@ -2,9 +2,9 @@
 using System;
 using System.IO;
 
-namespace HabitTracker.Models
+namespace HabitTracker.Database
 {
-    public class DatabaseConstants
+    public static class DBConstants
     {
         public const string DatabaseFilename = "HabitTracker.db";
 
@@ -23,11 +23,6 @@ namespace HabitTracker.Models
                 var basePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\Database";
                 return Path.Combine(basePath, DatabaseFilename);
             }
-        }
-
-        public static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
-        {
-            return new SQLiteAsyncConnection(DatabaseConstants.DatabasePath, DatabaseConstants.Flags);
-        });        
+        }      
     }
 }

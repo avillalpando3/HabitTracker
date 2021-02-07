@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace HabitTracker.Models
+namespace HabitTracker.Common
 {
     public static class TaskExtensions
     {
