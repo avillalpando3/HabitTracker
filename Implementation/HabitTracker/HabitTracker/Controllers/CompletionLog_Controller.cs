@@ -57,5 +57,21 @@ namespace CompletionLogTracker.Models
         {
             return Database.DeleteAsync(completionLog);
         }
+
+        /// <summary>
+        /// @param id_habit
+        /// </summary>
+        public void create(int id_habit)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id_habit
+        /// </summary>
+        public void delete(HashSet<int> id_habit)
+        {
+            // TODO implement here
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace HabitTracker.Models
                 initialized = true;
             }
         }
-
+        
         public Task<List<Habit_Controller>> GetHabitsAsync()
         {
             return Database.Table<Habit_Controller>().ToListAsync();
@@ -60,6 +60,168 @@ namespace HabitTracker.Models
         public Task<int> DeleteHabitAsync(Habit_Controller habit)
         {
             return Database.DeleteAsync(habit);
+        }
+
+        /// <summary>
+        /// @param groupId 
+        /// @param name 
+        /// @param frequency 
+        /// @param period 
+        /// @param id_group 
+        /// @param sortPrecedence 
+        /// @param color 
+        /// @param alarm
+        /// </summary>
+        public void create(int groupId, string name, int frequency, int period, int id_group, int sortPrecedence, String color, Time alarm)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id
+        /// </summary>
+        public void delete(HashSet<int> id)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param day
+        /// </summary>
+        public void markComplete(int id, int day)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param day
+        /// </summary>
+        public void markIncomplete(int id, int day)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param day
+        /// </summary>
+        public void getCompletionStatus(HashSet<int> id, HashSet<int> day)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param frequency 
+        /// @param periodLength
+        /// </summary>
+        public void setReccurence(int id, int frequency, int periodLength)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id
+        /// </summary>
+        public void getReccurence(HashSet<int> id)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @return
+        /// </summary>
+        public List getListDueToday()
+        {
+            // TODO implement here
+            return null;
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param color
+        /// </summary>
+        public void setColor(int id, String color)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id
+        /// </summary>
+        public void getColor(HashSet<int> id)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param name
+        /// </summary>
+        public void setName(int id, String name)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id
+        /// </summary>
+        public void getName(HashSet<int> id)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param id_group
+        /// </summary>
+        public void moveToGroup(int id, int id_group)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id
+        /// </summary>
+        public void removeGrouping(int id)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id 
+        /// @param time
+        /// </summary>
+        public void setAlarm(int id, Time time)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id
+        /// </summary>
+        public void getAlarm(HashSet<int> id)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @param id
+        /// </summary>
+        public void createSystemAlarm(HashSet<int> id)
+        {
+            // TODO implement here
+        }
+
+        /// <summary>
+        /// @return
+        /// </summary>
+        public List<int> listHabits()
+        {
+            // TODO implement here
+            return null;
         }
     }
 }
