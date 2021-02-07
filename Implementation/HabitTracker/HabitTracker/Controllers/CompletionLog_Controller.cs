@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CompletionLogTracker.Controllers
+namespace HabitTracker.Controllers
 {
     public class CompletionLog_Controller : DBEntity
     {
