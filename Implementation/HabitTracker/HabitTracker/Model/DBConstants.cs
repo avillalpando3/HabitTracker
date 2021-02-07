@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace HabitTracker.Database
+namespace HabitTracker.Models
 {
     public static class DBConstants
     {
