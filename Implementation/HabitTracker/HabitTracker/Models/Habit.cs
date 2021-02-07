@@ -40,12 +40,6 @@ namespace HabitTracker.Models
             return Database.Table<Habit>().ToListAsync();
         }
 
-        //public Task<List<Habit>> GetHabitsNotDoneAsync()
-        //{
-        //    // SQL queries are also possible
-        //    return Database.QueryAsync<Habit>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        //}
-
         public Task<Habit> GetHabitAsync(int id)
         {
             return Database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();

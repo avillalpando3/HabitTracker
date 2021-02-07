@@ -36,12 +36,6 @@ namespace CompletionLogTracker.Models
             return Database.Table<CompletionLog>().ToListAsync();
         }
 
-        //public Task<List<CompletionLog>> GetItemsNotDoneAsync()
-        //{
-        //    // SQL queries are also possible
-        //    return Database.QueryAsync<CompletionLog>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        //}
-
         public Task<CompletionLog> GetCompletionLogAsync(int id)
         {
             return Database.Table<CompletionLog>().Where(i => i.ID == id).FirstOrDefaultAsync();
