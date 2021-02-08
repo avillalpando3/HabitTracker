@@ -1,4 +1,4 @@
-﻿using HabitTracker.Database;
+﻿using HabitTracker.Models;
 using SQLite;
 using System;
 
@@ -17,7 +17,7 @@ namespace HabitTracker.Controllers
         /// <summary>
         /// @param id
         /// </summary>
-        public abstract void delete(int id);
+        // public abstract void delete(int id);
 
         /// <summary>
         /// @param query

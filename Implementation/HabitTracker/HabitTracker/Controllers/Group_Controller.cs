@@ -1,5 +1,5 @@
 ﻿using HabitTracker.Common;
-using HabitTracker.Database;
+using HabitTracker.Models;
 using SQLite;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace HabitTracker.Controllers
             return Database.Table<Group>().ToListAsync();
         }
 
-        public Task<Group_Controller> GetGroupAsync(int id)
+        public Task<Group> GetGroupAsync(int id)
         {
             return Database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
@@ -59,7 +59,7 @@ namespace HabitTracker.Controllers
         /// @param sortPrecedence 
         /// @param color
         /// </summary>
-        public void create(String name, int id_group, int sortPrecedence, String color)
+        public void create(string name, int id_group, int sortPrecedence, string color)
         {
             // TODO implement here
         }
@@ -117,7 +117,7 @@ namespace HabitTracker.Controllers
         /// @param id 
         /// @param color
         /// </summary>
-        public void setColor(int id, String color)
+        public void setColor(int id, string color)
         {
             // TODO implement here
         }
@@ -126,7 +126,7 @@ namespace HabitTracker.Controllers
         /// @param id 
         /// @param name
         /// </summary>
-        public void setName(int id, String name)
+        public void setName(int id, string name)
         {
             // TODO implement here
         }

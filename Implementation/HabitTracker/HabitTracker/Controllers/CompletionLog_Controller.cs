@@ -1,4 +1,5 @@
-﻿using HabitTracker.Database;
+﻿using HabitTracker.Models;
+using HabitTracker.Common;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.Controllers
 {
-    public class CompletionLog_Controller : DBEntity
+    public class CompletionLog_Controller : Controller
     {
     
         public CompletionLog_Controller()

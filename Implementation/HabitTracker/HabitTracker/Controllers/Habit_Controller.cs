@@ -1,4 +1,4 @@
-﻿using HabitTracker.Database;
+﻿using HabitTracker.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -64,7 +64,7 @@ namespace HabitTracker.Controllers
         /// @param color 
         /// @param alarm
         /// </summary>
-        public void create(int groupId, string name, int frequency, int period, int id_group, int sortPrecedence, String color, Time alarm)
+        public void create(int groupId, string name, int frequency, int period, int id_group, int sortPrecedence, string color, TimeSpan alarm)
         {
             // TODO implement here
         }
@@ -125,7 +125,7 @@ namespace HabitTracker.Controllers
         /// <summary>
         /// @return
         /// </summary>
-        public List getListDueToday()
+        public Task<List<Habit>> getListDueToday()
         {
             // TODO implement here
             return null;
@@ -186,7 +186,7 @@ namespace HabitTracker.Controllers
         /// @param id 
         /// @param time
         /// </summary>
-        public void setAlarm(int id, Time time)
+        public void setAlarm(int id, TimeSpan time)
         {
             // TODO implement here
         }
