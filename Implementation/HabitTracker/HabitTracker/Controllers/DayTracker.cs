@@ -1,8 +1,8 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 
 public class DayTracker {
 
@@ -11,7 +11,7 @@ public class DayTracker {
 
     private int dayCounter;
 
-    private Time incrementTime;
+    private TimeSpan incrementTime;
 
     private void incrementDay() {
         // TODO implement here
