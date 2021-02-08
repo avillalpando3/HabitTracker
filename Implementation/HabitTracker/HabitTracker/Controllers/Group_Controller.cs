@@ -15,29 +15,29 @@ namespace HabitTracker.Controllers
             InitializeAsync().SafeFireAndForget(false);
         }
 
-        async Task InitializeAsync()
+        async Task InitializeAsync() // not sure where this goes
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Group_Controller).Name))
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Group).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Group_Controller)).ConfigureAwait(false);
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Group)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
         }
 
-        public Task<List<Group_Controller>> GetGroupsAsync()
+        public Task<List<Group>> GetGroupsAsync()
         {
-            return Database.Table<Group_Controller>().ToListAsync();
+            return Database.Table<Group>().ToListAsync();
         }
 
         public Task<Group_Controller> GetGroupAsync(int id)
         {
-            return Database.Table<Group_Controller>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return Database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveGroupAsync(Group_Controller group)
+        public Task<int> SaveGroupAsync(Group group)
         {
             if (group.ID != 0)
             {
@@ -48,7 +48,7 @@ namespace HabitTracker.Controllers
                 return Database.InsertAsync(group);
             }
         }
-        public Task<int> DeleteGroupAsync(Group_Controller group)
+        public Task<int> DeleteGroupAsync(Group group)
         {
             return Database.DeleteAsync(group);
         }

@@ -15,29 +15,29 @@ namespace HabitTracker.Controllers
             InitializeAsync().Start();
         }
 
-        async Task InitializeAsync()
+        async Task InitializeAsync() // not sure where this goes
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit_Controller).Name))
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Habit_Controller)).ConfigureAwait(false);
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Habit)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
         }
         
-        public Task<List<Habit_Controller>> GetHabitsAsync()
+        public Task<List<Habit>> GetHabitsAsync()
         {
             return Database.Table<Habit_Controller>().ToListAsync();
         }
 
-        public Task<Habit_Controller> GetHabitAsync(int id)
+        public Task<Habit> GetHabitAsync(int id)
         {
             return Database.Table<Habit_Controller>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveHabitAsync(Habit_Controller habit)
+        public Task<int> SaveHabitAsync(Habit habit)
         {
             if (habit.ID != 0)
             {
@@ -49,7 +49,7 @@ namespace HabitTracker.Controllers
             }
         }
 
-        public Task<int> DeleteHabitAsync(Habit_Controller habit)
+        public Task<int> DeleteHabitAsync(Habit habit)
         {
             return Database.DeleteAsync(habit);
         }
