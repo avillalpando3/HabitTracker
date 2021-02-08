@@ -9,12 +9,7 @@ namespace HabitTracker.Controllers
 {
     public class Group_Controller: Controller
     {
-        public int ID { get; set; }
-        public int Group_ID { get; set; }
-        public string Name { get; set; }
-        public int SortPrecedence { get; set; }
-        public string Color { get; set; }
-
+        
         public Group_Controller()
         {
             InitializeAsync().SafeFireAndForget(false);

@@ -9,11 +9,7 @@ namespace HabitTracker.Controllers
 {
     public class CompletionLog_Controller : DBEntity
     {
-        public int ID { get; set; }
-        public int Habit_ID { get; set; }
-        public int Tracked_Day { get; set; }
-        public DateTime DateTime_Completed { get; set; }
-
+    
         public CompletionLog_Controller()
         {
             InitializeAsync().Start();
