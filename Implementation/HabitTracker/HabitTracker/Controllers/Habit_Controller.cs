@@ -29,12 +29,12 @@ namespace HabitTracker.Controllers
         
         public Task<List<Habit>> GetHabitsAsync()
         {
-            return Database.Table<Habit_Controller>().ToListAsync();
+            return Database.Table<Habit>().ToListAsync();
         }
 
         public Task<Habit> GetHabitAsync(int id)
         {
-            return Database.Table<Habit_Controller>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return Database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveHabitAsync(Habit habit)
