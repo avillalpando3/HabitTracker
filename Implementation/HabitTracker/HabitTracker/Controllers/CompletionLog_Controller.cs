@@ -33,7 +33,7 @@ namespace HabitTracker.Controllers
             return Database.Table<CompletionLog>().ToListAsync();
         }
 
-        public Task<CompletionLog_Controller> GetCompletionLogAsync(int id)
+        public Task<CompletionLog> GetCompletionLogAsync(int id)
         {
             return Database.Table<CompletionLog>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
