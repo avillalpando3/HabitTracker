@@ -10,7 +10,7 @@ namespace HabitTracker.Controllers
     public class Habit_Controller : Controller
     {
     
-        public Habit_Controller()
+        public Habit_Controller() : base()
         {
             InitializeAsync().Start();
         }
@@ -19,9 +19,9 @@ namespace HabitTracker.Controllers
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit).Name))
+                if (!_database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Habit)).ConfigureAwait(false);
+                    await _database.CreateTablesAsync(CreateFlags.None, typeof(Habit)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
@@ -29,29 +29,29 @@ namespace HabitTracker.Controllers
         
         public Task<List<Habit>> GetHabitsAsync()
         {
-            return Database.Table<Habit>().ToListAsync();
+            return _database.Table<Habit>().ToListAsync();
         }
 
         public Task<Habit> GetHabitAsync(int id)
         {
-            return Database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return _database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveHabitAsync(Habit habit)
         {
             if (habit.ID != 0)
             {
-                return Database.UpdateAsync(habit);
+                return _database.UpdateAsync(habit);
             }
             else
             {
-                return Database.InsertAsync(habit);
+                return _database.InsertAsync(habit);
             }
         }
 
         public Task<int> DeleteHabitAsync(Habit habit)
         {
-            return Database.DeleteAsync(habit);
+            return _database.DeleteAsync(habit);
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace HabitTracker.Controllers
         /// @param color 
         /// @param alarm
         /// </summary>
-        public void create(int groupId, string name, int frequency, int period, int id_group, int sortPrecedence, string color, TimeSpan alarm)
+        public Task<int> Create(Habit habit)
         {
-            // TODO implement here
+            return _database.InsertAsync(habit);
         }
 
         /// <summary>

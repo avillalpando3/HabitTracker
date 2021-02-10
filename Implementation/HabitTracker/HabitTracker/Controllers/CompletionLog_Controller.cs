@@ -11,7 +11,7 @@ namespace HabitTracker.Controllers
     public class CompletionLog_Controller : Controller
     {
     
-        public CompletionLog_Controller()
+        public CompletionLog_Controller(): base()
         {
             InitializeAsync().Start();
         }
@@ -20,9 +20,9 @@ namespace HabitTracker.Controllers
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(CompletionLog).Name))
+                if (!_database.TableMappings.Any(m => m.MappedType.Name == typeof(CompletionLog).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(CompletionLog)).ConfigureAwait(false);
+                    await _database.CreateTablesAsync(CreateFlags.None, typeof(CompletionLog)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
@@ -30,29 +30,29 @@ namespace HabitTracker.Controllers
 
         public Task<List<CompletionLog>> GetCompletionLogsAsync()
         {
-            return Database.Table<CompletionLog>().ToListAsync();
+            return _database.Table<CompletionLog>().ToListAsync();
         }
 
         public Task<CompletionLog> GetCompletionLogAsync(int id)
         {
-            return Database.Table<CompletionLog>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return _database.Table<CompletionLog>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveCompletionLogAsync(CompletionLog completionLog)
         {
             if (completionLog.ID != 0)
             {
-                return Database.UpdateAsync(completionLog);
+                return _database.UpdateAsync(completionLog);
             }
             else
             {
-                return Database.InsertAsync(completionLog);
+                return _database.InsertAsync(completionLog);
             }
         }
 
         public Task<int> DeleteCompletionLogAsync(CompletionLog completionLog)
         {
-            return Database.DeleteAsync(completionLog);
+            return _database.DeleteAsync(completionLog);
         }
 
         /// <summary>

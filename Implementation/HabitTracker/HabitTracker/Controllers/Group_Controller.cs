@@ -10,7 +10,7 @@ namespace HabitTracker.Controllers
     public class Group_Controller: Controller
     {
         
-        public Group_Controller()
+        public Group_Controller() : base()
         {
             InitializeAsync().SafeFireAndForget(false);
         }
@@ -19,9 +19,9 @@ namespace HabitTracker.Controllers
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Group).Name))
+                if (!_database.TableMappings.Any(m => m.MappedType.Name == typeof(Group).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Group)).ConfigureAwait(false);
+                    await _database.CreateTablesAsync(CreateFlags.None, typeof(Group)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
@@ -29,28 +29,28 @@ namespace HabitTracker.Controllers
 
         public Task<List<Group>> GetGroupsAsync()
         {
-            return Database.Table<Group>().ToListAsync();
+            return _database.Table<Group>().ToListAsync();
         }
 
         public Task<Group> GetGroupAsync(int id)
         {
-            return Database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return _database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveGroupAsync(Group group)
         {
             if (group.ID != 0)
             {
-                return Database.UpdateAsync(group);
+                return _database.UpdateAsync(group);
             }
             else
             {
-                return Database.InsertAsync(group);
+                return _database.InsertAsync(group);
             }
         }
         public Task<int> DeleteGroupAsync(Group group)
         {
-            return Database.DeleteAsync(group);
+            return _database.DeleteAsync(group);
         }
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace HabitTracker.Controllers
         /// @param sortPrecedence 
         /// @param color
         /// </summary>
-        public void create(string name, int id_group, int sortPrecedence, string color)
+        public Task<int> Create(Group group)
         {
-            // TODO implement here
+            return _database.InsertAsync(group);
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace HabitTracker.Models
         {
             get
             {
-                var basePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\Database";
+                var basePath = $"{AppDomain.CurrentDomain.BaseDirectory}\\Database";
                 return Path.Combine(basePath, DatabaseFilename);
             }
         }      

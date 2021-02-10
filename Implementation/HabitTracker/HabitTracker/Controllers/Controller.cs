@@ -1,17 +1,22 @@
 ﻿using HabitTracker.Models;
 using SQLite;
 using System;
+using System.IO;
 
 namespace HabitTracker.Controllers
 {
     public class Controller
     {
-        protected static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
+        public Controller()
         {
-            return new SQLiteAsyncConnection(DBConstants.DatabasePath, DBConstants.Flags);
-        });
+            if (!File.Exists(DBConstants.DatabasePath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(DBConstants.DatabasePath));                
+            }
+            _database = new SQLiteAsyncConnection(DBConstants.DatabasePath);
+        }
 
-        protected static SQLiteAsyncConnection Database => lazyInitializer.Value;
+        protected static SQLiteAsyncConnection _database;
         protected static bool initialized = false;
 
         /// <summary>
