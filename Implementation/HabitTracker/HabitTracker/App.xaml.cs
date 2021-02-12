@@ -1,5 +1,4 @@
 ﻿using HabitTracker.Services;
-using HabitTracker.Controllers;
 using HabitTracker.Views;
 using System;
 using Xamarin.Forms;
@@ -9,19 +8,19 @@ namespace HabitTracker
 {
     public partial class App : Application
     {
-        static Controller databaseController;
+        //static BaseDataAccessLayer databaseController;
 
-        public static Controller Controller
-        {
-            get
-            {
-                if (databaseController == null)
-                {
-                    databaseController = new Controller();
-                }
-                return databaseController;
-            }
-        }
+        //public static BaseDataAccessLayer Controller
+        //{
+        //    get
+        //    {
+        //        if (databaseController == null)
+        //        {
+        //            databaseController = new BaseDataAccessLayer();
+        //        }
+        //        return databaseController;
+        //    }
+        //}
 
         public App()
         {

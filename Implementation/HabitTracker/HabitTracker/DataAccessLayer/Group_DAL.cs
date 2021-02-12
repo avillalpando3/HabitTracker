@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HabitTracker.Controllers
+namespace HabitTracker.DAL
 {
-    public class Group_Controller: Controller
+    public class Group_DAL : BaseDAL
     {
         
-        public Group_Controller() : base()
+        public Group_DAL() : base()
         {
             InitializeAsync().SafeFireAndForget(false);
         }

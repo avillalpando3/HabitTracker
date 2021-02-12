@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HabitTracker.Controllers
+namespace HabitTracker.DAL
 {
-    public class Habit_Controller : Controller
+    public class Habit_DAL : BaseDAL
     {
     
-        public Habit_Controller() : base()
+        public Habit_DAL() : base()
         {
             InitializeAsync().Start();
         }

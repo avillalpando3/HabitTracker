@@ -3,11 +3,11 @@ using SQLite;
 using System;
 using System.IO;
 
-namespace HabitTracker.Controllers
+namespace HabitTracker.DAL
 {
-    public class Controller
+    public class BaseDAL
     {
-        public Controller()
+        public BaseDAL()
         {
             if (!File.Exists(DBConstants.DatabasePath))
             {

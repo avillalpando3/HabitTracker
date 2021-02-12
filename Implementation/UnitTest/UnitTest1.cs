@@ -1,7 +1,6 @@
-﻿using HabitTracker.Controllers;
+﻿using HabitTracker.DAL;
 using HabitTracker.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace UnitTest
 {
@@ -18,7 +17,7 @@ namespace UnitTest
                 SortPrecedence = 1,
                 Color = "Red"
             };
-            var group_Controller = new Group_Controller();
+            var group_Controller = new Group_DAL();
             
             var id = group_Controller.Create(group);
 

@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HabitTracker.Controllers
+namespace HabitTracker.DAL
 {
-    public class CompletionLog_Controller : Controller
+    public class CompletionLog_DAL : BaseDAL
     {
     
-        public CompletionLog_Controller(): base()
+        public CompletionLog_DAL(): base()
         {
             InitializeAsync().Start();
         }
