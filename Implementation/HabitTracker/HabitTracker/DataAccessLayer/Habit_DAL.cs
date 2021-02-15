@@ -1,4 +1,5 @@
-﻿using HabitTracker.Models;
+﻿using HabitTracker.Common;
+using HabitTracker.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace HabitTracker.DAL
     
         public Habit_DAL() : base()
         {
-            InitializeAsync().Start();
+            InitializeAsync().SafeFireAndForget(false);
         }
 
         async Task InitializeAsync() // not sure where this goes
@@ -32,7 +33,7 @@ namespace HabitTracker.DAL
             return _database.Table<Habit>().ToListAsync();
         }
 
-        public Task<Habit> GetHabitAsync(int id)
+        public Task<Habit> GetDataAsync(int id)
         {
             return _database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
@@ -54,28 +55,6 @@ namespace HabitTracker.DAL
             return _database.DeleteAsync(habit);
         }
 
-        /// <summary>
-        /// @param groupId 
-        /// @param name 
-        /// @param frequency 
-        /// @param period 
-        /// @param id_group 
-        /// @param sortPrecedence 
-        /// @param color 
-        /// @param alarm
-        /// </summary>
-        public Task<int> Create(Habit habit)
-        {
-            return _database.InsertAsync(habit);
-        }
-
-        /// <summary>
-        /// @param id
-        /// </summary>
-        public void delete(HashSet<int> id)
-        {
-            // TODO implement here
-        }
 
         /// <summary>
         /// @param id 
@@ -216,4 +195,5 @@ namespace HabitTracker.DAL
             return null;
         }
     }
+
 }

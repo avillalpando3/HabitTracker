@@ -1,4 +1,4 @@
-﻿using HabitTracker.Services;
+﻿using HabitTracker.DAL;
 using HabitTracker.Views;
 using System;
 using Xamarin.Forms;
@@ -26,7 +26,9 @@ namespace HabitTracker
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            var habit_dal = new Habit_DAL();
+            DependencyService.RegisterSingleton<Habit_DAL>(habit_dal);
+
             MainPage = new AppShell();
         }
 

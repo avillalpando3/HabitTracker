@@ -1,5 +1,5 @@
-﻿using HabitTracker.Models;
-using HabitTracker.Services;
+﻿using HabitTracker.DAL;
+using HabitTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ namespace HabitTracker.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        //public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
 
         bool isBusy = false;
         public bool IsBusy

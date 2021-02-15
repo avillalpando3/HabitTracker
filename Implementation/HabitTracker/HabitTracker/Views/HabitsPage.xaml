@@ -5,7 +5,7 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:HabitTracker.ViewModels"  
              xmlns:model="clr-namespace:HabitTracker.Models"  
-             x:Name="BrowseItemsPage">
+             x:Name="HabitsPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
@@ -14,9 +14,9 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <RefreshView x:DataType="local:HabitsViewModel" Command="{Binding LoadHabitsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
+                ItemsSource="{Binding Habits}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -32,7 +32,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:HabitsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>

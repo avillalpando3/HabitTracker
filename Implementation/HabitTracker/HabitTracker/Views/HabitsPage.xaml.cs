@@ -14,13 +14,13 @@ namespace HabitTracker.Views
 {
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        HabitsViewModel _viewModel;
 
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new HabitsViewModel();
         }
 
         protected override void OnAppearing()

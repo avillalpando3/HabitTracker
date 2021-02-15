@@ -1,4 +1,5 @@
-﻿using HabitTracker.Models;
+﻿using HabitTracker.DAL;
+using HabitTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,12 +8,13 @@ using Xamarin.Forms;
 
 namespace HabitTracker.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewHabitViewModel : BaseViewModel
     {
         private string text;
         private string description;
+        public Habit_DAL DataStore => DependencyService.Get<Habit_DAL>();
 
-        public NewItemViewModel()
+        public NewHabitViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
@@ -49,14 +51,9 @@ namespace HabitTracker.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
-            };
+            var habit = new Habit();
 
-            await DataStore.AddItemAsync(newItem);
+            await DataStore.SaveHabitAsync(habit);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

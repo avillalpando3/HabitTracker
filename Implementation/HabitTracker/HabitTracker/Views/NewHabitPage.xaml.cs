@@ -8,14 +8,14 @@ using Xamarin.Forms.Xaml;
 
 namespace HabitTracker.Views
 {
-    public partial class NewItemPage : ContentPage
+    public partial class NewHabitPage : ContentPage
     {
         public Item Item { get; set; }
 
-        public NewItemPage()
+        public NewHabitPage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
+            BindingContext = new NewHabitViewModel();
         }
     }
 }

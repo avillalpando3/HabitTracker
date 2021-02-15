@@ -10,7 +10,7 @@ namespace HabitTracker.Models
         public int ID { get; set; }
         [/*ForeignKey*/ Indexed]
         public int Group_ID { get; set; }
-        //[NotNull
+        //[NotNull]
         public string Name { get; set; }
         public int SortPrecedence { get; set; }
         public string Color { get; set; }
