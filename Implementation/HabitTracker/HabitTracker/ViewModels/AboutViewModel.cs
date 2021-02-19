@@ -9,7 +9,7 @@ namespace HabitTracker.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "HabitTracker";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
 
