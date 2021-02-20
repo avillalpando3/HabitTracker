@@ -8,6 +8,13 @@ using Syncfusion.SfCalendar.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+/*
+ * https//help.syncfusion.com/xamarin/calendar/getting-started?cs-save-lang=1&cs-lang=xaml
+ * 
+ * SyncFusion SfCalendar
+ * 
+ */
+
 namespace HabitTracker.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -32,7 +39,7 @@ namespace HabitTracker.Views
             calendar.BlackoutDates = black_dates;
 
             // Restricts Dates to Specified Range
-            calendar.MinDate = new DateTime(2019, 1, 1);
+            calendar.MinDate = new DateTime(2017, 1, 1);
             calendar.MaxDate = new DateTime(2021, 12, 31);
             this.Content = calendar;
         }

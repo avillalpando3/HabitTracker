@@ -6,13 +6,9 @@
 
 
     <ContentPage.Content>
-
         <StackLayout>
-
             <calendar:SfCalendar x:Name="calendar" />
-            
         </StackLayout>
-        
     </ContentPage.Content>
 
 </ContentPage>
