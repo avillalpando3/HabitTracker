@@ -11,6 +11,9 @@ namespace HabitTracker
 
         public App()
         {
+            // Registered Syncfusion License belonging to kiddjsh(Joshua Kidder)
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDAxOTcwQDMxMzgyZTM0MmUzMG4wWnVEMkIwRWsrdkxJb3o1ZmNFV3ZoZ3ovU0xBN0NSdm43M0J3QWpYclU9");
+
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
