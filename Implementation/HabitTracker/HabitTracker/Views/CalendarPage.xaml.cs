@@ -9,9 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 /*
- * https//help.syncfusion.com/xamarin/calendar/getting-started?cs-save-lang=1&cs-lang=xaml
- * 
- * SyncFusion SfCalendar
+ * SyncFusion HowTo located at bottom
  * 
  */
 
@@ -39,8 +37,8 @@ namespace HabitTracker.Views
             calendar.BlackoutDates = black_dates;
 
             // Restricts Dates to Specified Range
-            calendar.MinDate = new DateTime(2017, 1, 1);
-            calendar.MaxDate = new DateTime(2021, 12, 31);
+            calendar.MinDate = new DateTime(1990, 1, 1);
+            calendar.MaxDate = new DateTime(2100, 12, 31);
             this.Content = calendar;
 
             // Gets appointment details in OnCalendarTapped event
@@ -62,3 +60,12 @@ namespace HabitTracker.Views
         }
     }
 }
+
+/*
+ * Joshua Kidder
+ * SyncFusion SfCalendar
+ * https//help.syncfusion.com/xamarin/calendar/getting-started?cs-save-lang=1&cs-lang=xaml
+ * 
+ * OnCalendarTapped
+ * https:www.syncfusion.com/kb/12281/how-to-get-the-tapped-appointment-details-in-xamarin-forms-calendar-sfcalendar
+ */
