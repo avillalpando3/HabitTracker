@@ -42,6 +42,23 @@ namespace HabitTracker.Views
             calendar.MinDate = new DateTime(2017, 1, 1);
             calendar.MaxDate = new DateTime(2021, 12, 31);
             this.Content = calendar;
+
+            // Gets appointment details in OnCalendarTapped event
+            calendar.OnCalendarTapped += Calendar_OnCalendarTapped;
+
+            void Calendar_OnCalendarTapped(object sender, CalendarTappedEventArgs e)
+            {
+                var appointmentCollection = e.SelectedAppointment as CalendarEventCollection;
+                if (appointmentCollection.Count > 0)
+                {
+                    var appointment = appointmentCollection[0]; ;
+                    App.Current.MainPage.DisplayAlert(appointment.Subject, appointment.StartTime.ToString("dd/MM/yyyy hh:mm tt"), "OK");
+                }
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("", "No Events", "OK");
+                }
+            }
         }
     }
 }
