@@ -18,6 +18,34 @@ namespace HabitTracker.Views
         public AboutPage()
         {
             InitializeComponent();
+
+            // Adds the SfCalendar Control
+            SfCalendar calendar = new SfCalendar();
+
+            // Shows the first row of month view dates
+            calendar.NumberOfWeeksInView = 1;
+
+            // Restricts dates to specified range
+            calendar.MinDate = new DateTime(1990, 1, 1);
+            calendar.MaxDate = new DateTime(2100, 12, 31);
+            this.Content = calendar;
+
+            // Gets appointment details in OnCalendarTapped event
+            calendar.OnCalendarTapped += Calendar_OnCalendarTapped;
+
+            void Calendar_OnCalendarTapped(object sender, CalendarTappedEventArgs e)
+            {
+                var appointmentCollection = e.SelectedAppointment as CalendarEventCollection;
+                if (appointmentCollection.Count > 0)
+                {
+                    var appointment = appointmentCollection[0]; ;
+                    App.Current.MainPage.DisplayAlert(appointment.Subject, appointment.StartTime.ToString("dd/MM/yyyy hh:mm tt"), "OK");
+                }
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("", "No Events", "OK");
+                }
+            }
         }
 
         //  Displays the text of the ToolbarItem
@@ -39,4 +67,7 @@ namespace HabitTracker.Views
  * 
  * Pg 333: ToolBarItem
  * Pg 920: Page Navigation
+ * 
+ * https//help.syncfusion.com/xamarin/calendar/display-modes#week-view
+ * Week View
 */
