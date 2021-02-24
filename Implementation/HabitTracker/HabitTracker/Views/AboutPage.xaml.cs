@@ -22,30 +22,14 @@ namespace HabitTracker.Views
             // Adds the SfCalendar Control
             SfCalendar calendar = new SfCalendar();
 
-            // Shows the first row of month view dates
-            calendar.NumberOfWeeksInView = 1;
-
-            // Restricts dates to specified range
+            // Restricts Dates to Specified Range
             calendar.MinDate = new DateTime(1990, 1, 1);
             calendar.MaxDate = new DateTime(2100, 12, 31);
+
+            // Shows the first row of month view dates
+            calendar.NumberOfWeeksInView = 1;
+            //calendar.HeightRequest = 50;
             this.Content = calendar;
-
-            // Gets appointment details in OnCalendarTapped event
-            calendar.OnCalendarTapped += Calendar_OnCalendarTapped;
-
-            void Calendar_OnCalendarTapped(object sender, CalendarTappedEventArgs e)
-            {
-                var appointmentCollection = e.SelectedAppointment as CalendarEventCollection;
-                if (appointmentCollection.Count > 0)
-                {
-                    var appointment = appointmentCollection[0]; ;
-                    App.Current.MainPage.DisplayAlert(appointment.Subject, appointment.StartTime.ToString("dd/MM/yyyy hh:mm tt"), "OK");
-                }
-                else
-                {
-                    App.Current.MainPage.DisplayAlert("", "No Events", "OK");
-                }
-            }
         }
 
         //  Displays the text of the ToolbarItem

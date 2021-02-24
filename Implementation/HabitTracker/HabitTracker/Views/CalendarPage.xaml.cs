@@ -25,6 +25,10 @@ namespace HabitTracker.Views
 
             // Adds the SfCalendar Control
             SfCalendar calendar = new SfCalendar();
+  
+            // Restricts Dates to Specified Range
+            calendar.MinDate = new DateTime(1990, 1, 1);
+            calendar.MaxDate = new DateTime(2100, 12, 31);
             this.Content = calendar;
 
             // Sets Blackout Dates
@@ -35,11 +39,6 @@ namespace HabitTracker.Views
                 black_dates.Add(date);
             }
             calendar.BlackoutDates = black_dates;
-
-            // Restricts Dates to Specified Range
-            calendar.MinDate = new DateTime(1990, 1, 1);
-            calendar.MaxDate = new DateTime(2100, 12, 31);
-            this.Content = calendar;
 
             // Gets appointment details in OnCalendarTapped event
             calendar.OnCalendarTapped += Calendar_OnCalendarTapped;

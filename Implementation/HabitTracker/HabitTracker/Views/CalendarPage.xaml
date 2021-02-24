@@ -8,7 +8,8 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <calendar:SfCalendar x:Name="calendar" />
+             <syncfusion:SfCalendar  x:Name="calendar" ViewMode="MonthView" 
+						                              ShowLeadingAndTrailingDays="False"/>
         </StackLayout>
     </ContentPage.Content>
 
