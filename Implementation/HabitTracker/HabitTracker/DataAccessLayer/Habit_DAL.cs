@@ -10,7 +10,7 @@ namespace HabitTracker.DAL
 {
     public class Habit_DAL
     {
-        public Habit_DAL() : base()
+        public Habit_DAL()
         {
             InitializeAsync().SafeFireAndForget(false);
         }

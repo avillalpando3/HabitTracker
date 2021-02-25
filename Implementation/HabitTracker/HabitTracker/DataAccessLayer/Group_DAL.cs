@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.DAL
 {
-    public class Group_DAL : StorageFile_DAL
+    public class Group_DAL
     {
         
-        public Group_DAL() : base()
+        public Group_DAL()
         {
             InitializeAsync().SafeFireAndForget(false);
         }

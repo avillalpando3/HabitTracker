@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.DAL
 {
-    public class CompletionLog_DAL : StorageFile_DAL
+    public class CompletionLog_DAL
     {
     
-        public CompletionLog_DAL(): base()
+        public CompletionLog_DAL()
         {
             InitializeAsync().Start();
         }
