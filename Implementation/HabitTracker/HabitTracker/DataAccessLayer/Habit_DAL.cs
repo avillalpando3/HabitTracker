@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.DAL
 {
-    public class Habit_DAL : BaseDAL
+    public class Habit_DAL
     {
-    
         public Habit_DAL() : base()
         {
             InitializeAsync().SafeFireAndForget(false);
         }
 
-        async Task InitializeAsync() // not sure where this goes
+        private static bool initialized = false;
+        async Task InitializeAsync()
         {
             if (!initialized)
             {
-                if (!_database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit).Name))
+                if (!DBConstants.Database.TableMappings.Any(m => m.MappedType.Name == typeof(Habit).Name))
                 {
-                    await _database.CreateTablesAsync(CreateFlags.None, typeof(Habit)).ConfigureAwait(false);
+                    await DBConstants.Database.CreateTablesAsync(CreateFlags.None, typeof(Habit)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
@@ -30,29 +30,29 @@ namespace HabitTracker.DAL
         
         public Task<List<Habit>> GetHabitsAsync()
         {
-            return _database.Table<Habit>().ToListAsync();
+            return DBConstants.Database.Table<Habit>().ToListAsync();
         }
 
         public Task<Habit> GetDataAsync(int id)
         {
-            return _database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return DBConstants.Database.Table<Habit>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveHabitAsync(Habit habit)
         {
             if (habit.ID != 0)
             {
-                return _database.UpdateAsync(habit);
+                return DBConstants.Database.UpdateAsync(habit);
             }
             else
             {
-                return _database.InsertAsync(habit);
+                return DBConstants.Database.InsertAsync(habit);
             }
         }
 
         public Task<int> DeleteHabitAsync(Habit habit)
         {
-            return _database.DeleteAsync(habit);
+            return DBConstants.Database.DeleteAsync(habit);
         }
 
 

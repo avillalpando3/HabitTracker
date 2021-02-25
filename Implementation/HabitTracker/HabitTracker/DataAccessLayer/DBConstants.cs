@@ -7,9 +7,24 @@ namespace HabitTracker.DAL
     static class DBConstants
     {
 
-        public const string DatabaseFilename = "HabitTracker.db";
+        private static readonly object padlock = new object();
+        static SQLiteAsyncConnection database;
+        internal static SQLiteAsyncConnection Database
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (database == null)
+                    {
+                        database = new SQLiteAsyncConnection(DatabasePath);
+                    }
+                    return database;
+                }
+            }
+        }
 
-        public const SQLite.SQLiteOpenFlags Flags =
+        internal const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
             SQLite.SQLiteOpenFlags.ReadWrite |
             // create the database if it doesn't exist
@@ -17,7 +32,8 @@ namespace HabitTracker.DAL
             // enable multi-threaded database access
             SQLite.SQLiteOpenFlags.SharedCache;
 
-        public static string DatabasePath
+        private const string DatabaseFilename = "HabitTracker.db";
+        internal static string DatabasePath
         {
             get
             {

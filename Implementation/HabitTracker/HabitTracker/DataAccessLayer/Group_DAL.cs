@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.DAL
 {
-    public class Group_DAL : BaseDAL
+    public class Group_DAL : StorageFile_DAL
     {
         
         public Group_DAL() : base()
@@ -15,13 +15,14 @@ namespace HabitTracker.DAL
             InitializeAsync().SafeFireAndForget(false);
         }
 
-        async Task InitializeAsync() // not sure where this goes
+        private static bool initialized = false;
+        async Task InitializeAsync()
         {
             if (!initialized)
             {
-                if (!_database.TableMappings.Any(m => m.MappedType.Name == typeof(Group).Name))
+                if (!DBConstants.Database.TableMappings.Any(m => m.MappedType.Name == typeof(Group).Name))
                 {
-                    await _database.CreateTablesAsync(CreateFlags.None, typeof(Group)).ConfigureAwait(false);
+                    await DBConstants.Database.CreateTablesAsync(CreateFlags.None, typeof(Group)).ConfigureAwait(false);
                 }
                 initialized = true;
             }
@@ -29,28 +30,28 @@ namespace HabitTracker.DAL
 
         public Task<List<Group>> GetGroupsAsync()
         {
-            return _database.Table<Group>().ToListAsync();
+            return DBConstants.Database.Table<Group>().ToListAsync();
         }
 
         public Task<Group> GetGroupAsync(int id)
         {
-            return _database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return DBConstants.Database.Table<Group>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveGroupAsync(Group group)
         {
             if (group.ID != 0)
             {
-                return _database.UpdateAsync(group);
+                return DBConstants.Database.UpdateAsync(group);
             }
             else
             {
-                return _database.InsertAsync(group);
+                return DBConstants.Database.InsertAsync(group);
             }
         }
         public Task<int> DeleteGroupAsync(Group group)
         {
-            return _database.DeleteAsync(group);
+            return DBConstants.Database.DeleteAsync(group);
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace HabitTracker.DAL
         /// </summary>
         public Task<int> Create(Group group)
         {
-            return _database.InsertAsync(group);
+            return DBConstants.Database.InsertAsync(group);
         }
 
         /// <summary>
