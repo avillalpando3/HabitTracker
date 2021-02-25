@@ -21,27 +21,58 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Habit">
-                        <Label Text="{Binding Name}" 
+                        <Label 
+                            Text="{
+                                Binding ID,
+                                StringFormat='ID: {0}'
+                            }"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}" 
+                            FontSize="13"/>
+                        <Label 
+                            Text="{
+                                Binding Name,
+                                StringFormat='Name: {0}'
+                            }" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                        <Label Text="{Binding SortPrecedence}" 
+                        <Label
+                            Text="{
+                                Binding SortPrecedence,
+                                StringFormat='Sort Precedence: {0}'
+                            }" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <Label Text="{Binding Color}" 
+                        <Label
+                            Text="{
+                                Binding Color,
+                                StringFormat='Color: {0}'
+                            }" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <Label Text="{Binding Recurrence_Frequency}" 
+                        <Label
+                            Text="{
+                            Binding Recurrence_Frequency,
+                            StringFormat='Frequency: {0}'
+                            }" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <Label Text="{Binding Reccurence_Period}" 
+                        <Label
+                            Text="{
+                            Binding Reccurence_Period,
+                            StringFormat='Period: {0}'
+                            }" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <Label Text="{Binding Time_Alarm}" 
+                        <Label
+                            Text="{
+                            Binding Time_Alarm,
+                            StringFormat='Alarm at: {0:t}'}" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />

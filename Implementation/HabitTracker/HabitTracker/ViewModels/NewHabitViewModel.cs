@@ -1,10 +1,7 @@
 ﻿using HabitTracker.DAL;
 using HabitTracker.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
+using System;
 
 namespace HabitTracker.ViewModels
 {
@@ -45,8 +42,8 @@ namespace HabitTracker.ViewModels
             set => SetProperty(ref reccurence_Period, value);
         }
 
-        private DateTime time_Alarm;
-        public DateTime Time_Alarm
+        private TimeSpan time_Alarm;
+        public TimeSpan Time_Alarm
         {
             get => time_Alarm;
             set => SetProperty(ref time_Alarm, value);
@@ -79,7 +76,16 @@ namespace HabitTracker.ViewModels
 
         private async void OnSave()
         {
-            var habit = new Habit();
+            var habit = new Habit
+            {
+                Name = this.Name,
+                SortPrecedence = this.SortPrecedence,
+                Color = this.Color,
+                Recurrence_Frequency = this.Recurrence_Frequency,
+                Reccurence_Period = this.Reccurence_Period,
+                Time_Alarm = DateTime.Today.Add(this.Time_Alarm),
+            };
+            
 
             await DataStore.SaveHabitAsync(habit);
 

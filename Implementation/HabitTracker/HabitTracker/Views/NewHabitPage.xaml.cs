@@ -10,7 +10,6 @@ namespace HabitTracker.Views
 {
     public partial class NewHabitPage : ContentPage
     {
-        public Item Item { get; set; }
 
         public NewHabitPage()
         {

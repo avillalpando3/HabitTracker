@@ -19,7 +19,7 @@
             <Label Text="Reccurence_Period" FontSize="Medium" />
             <Editor Text="{Binding Reccurence_Period, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <Label Text="Time_Alarm" FontSize="Medium" />
-            <Editor Text="{Binding Time_Alarm, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <TimePicker Time="{Binding Time_Alarm, Mode=TwoWay}" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
