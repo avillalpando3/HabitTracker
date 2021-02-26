@@ -17,7 +17,8 @@ namespace HabitTracker.ViewModels
         public Command LoadHabitsCommand { get; }
         public Command AddHabitCommand { get; }
         public Command<Habit> HabitTapped { get; }
-        public Habit_DAL DataStore => DependencyService.Get<Habit_DAL>();
+        public Command<Habit> HabitSwiped { get; }
+        public Habit_DAL HabitTable => DependencyService.Get<Habit_DAL>();
 
         public HabitsViewModel()
         {
@@ -26,6 +27,8 @@ namespace HabitTracker.ViewModels
             LoadHabitsCommand = new Command(async () => await ExecuteLoadHabitsCommand());
 
             HabitTapped = new Command<Habit>(OnHabitSelected);
+
+            HabitSwiped = new Command<Habit>(OnSwiped);
 
             AddHabitCommand = new Command(OnAddHabit);
         }
@@ -37,7 +40,7 @@ namespace HabitTracker.ViewModels
             try
             {
                 Habits.Clear();
-                var habits = await DataStore.GetHabitsAsync();
+                var habits = await HabitTable.GetHabitsAsync();
                 foreach (var habit in habits)
                 {
                     Habits.Add(habit);
@@ -81,6 +84,12 @@ namespace HabitTracker.ViewModels
 
             // This will push the HabitDetailPage onto the navigation stack
             //await Shell.Current.GoToAsync($"{nameof(HabitDetailPage)}?{nameof(HabitDetailViewModel.HabitId)}={Habit.Id}");
+        }
+
+        async void OnSwiped(Habit habit)
+        {
+            var id = habit.ID;
+            HabitTable.DeleteHabitAsync(habit);
         }
     }
 }
