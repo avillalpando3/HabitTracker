@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HabitTracker.Models
+﻿namespace HabitTracker.Models
 {
     public class Item
     {

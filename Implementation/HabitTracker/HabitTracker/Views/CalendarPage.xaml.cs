@@ -1,10 +1,6 @@
-﻿using System;
+﻿using Syncfusion.SfCalendar.XForms;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Syncfusion.SfCalendar.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +21,7 @@ namespace HabitTracker.Views
 
             // Adds the SfCalendar Control
             SfCalendar calendar = new SfCalendar();
-  
+
             // Restricts Dates to Specified Range
             calendar.MinDate = new DateTime(1990, 1, 1);
             calendar.MaxDate = new DateTime(2100, 12, 31);

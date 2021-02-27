@@ -1,6 +1,3 @@
-using System;
-using SQLite;
-
 namespace HabitTracker.Models
 {
     public class Group

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HabitTracker.Controllers
 {
-    public class Group_Controller: Controller
+    public class Group_Controller : Controller
     {
-        
+
         public Group_Controller()
         {
             InitializeAsync().SafeFireAndForget(false);

@@ -1,21 +1,18 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Android.Runtime;
 
 namespace HabitTracker.Droid
 {
-    [Activity(Label = "HabitTracker", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "HabitTracker", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            // Registered Syncfusion License belonging to kiddjsh(Joshua Kidder)
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDAxOTcwQDMxMzgyZTM0MmUzMG4wWnVEMkIwRWsrdkxJb3o1ZmNFV3ZoZ3ovU0xBN0NSdm43M0J3QWpYclU9");
+            // Registered Syncfusion License
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("");
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

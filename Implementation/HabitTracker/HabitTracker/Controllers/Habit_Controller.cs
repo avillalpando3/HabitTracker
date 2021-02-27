@@ -9,7 +9,7 @@ namespace HabitTracker.Controllers
 {
     public class Habit_Controller : Controller
     {
-    
+
         public Habit_Controller()
         {
             InitializeAsync().Start();
@@ -26,7 +26,7 @@ namespace HabitTracker.Controllers
                 initialized = true;
             }
         }
-        
+
         public Task<List<Habit>> GetHabitsAsync()
         {
             return Database.Table<Habit>().ToListAsync();

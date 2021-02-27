@@ -1,7 +1,5 @@
-﻿using HabitTracker.ViewModels;
-using HabitTracker.Views;
+﻿using HabitTracker.Views;
 using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace HabitTracker

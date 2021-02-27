@@ -1,9 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using Syncfusion.SfCalendar.XForms;
+using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using Syncfusion.SfCalendar.XForms;
 
 /*
  * CreatingMobileAppswithXamarinForms notes at bottom
@@ -11,10 +8,10 @@ using Syncfusion.SfCalendar.XForms;
 */
 
 namespace HabitTracker.Views
-{  
+{
     public partial class AboutPage : ContentPage
     {
-        
+
         public AboutPage()
         {
             InitializeComponent();

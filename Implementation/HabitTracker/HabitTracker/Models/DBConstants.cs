@@ -1,5 +1,4 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.IO;
 
 namespace HabitTracker.Models
@@ -23,6 +22,6 @@ namespace HabitTracker.Models
                 var basePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\Database";
                 return Path.Combine(basePath, DatabaseFilename);
             }
-        }      
+        }
     }
 }
